@@ -1,22 +1,40 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+//import mongoose from 'mongoose';
+const mongoose = require('mongoose');
+const { connect, connection } = require('mongoose');
 
-// Load environment variables from .env file
-dotenv.config();
 
-// Connect to MongoDB
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.DB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1); // Exit process with failure
-  }
-};
+//mongoose.set('strictQuery', true);
+//import dotenv from 'dotenv';
+const dotenv = require('dotenv')
 
-// Export the connectDB function
-export default connectDB;
+// dotenv.config();
+
+try {
+  const connectionString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialDB';
+  
+  //const db = mongoose.connect(connectionString);
+  connect(connectionString);
+  
+} catch (error) {
+  console.log("Err: ", error);
+  
+}
+
+
+/*
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose connected to ' + connectionString);
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('Mongoose connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Mongoose disconnected');
+});
+*/
+
+//export default db;
+module.exports = connection;
+

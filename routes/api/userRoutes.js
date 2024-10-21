@@ -1,27 +1,36 @@
-const router = require('express').Router();
-
+/*
+import { Router } from 'express';
+import {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+  addFriend,
+  removeFriend,
+} from '../../controllers/userController.js';
+ */
+const { Router } = require('express');
 const {
-    getUser,
-    getSingleUser,
-    createUser,
-    updateUser,
-    deleteUser,
-    addFriend,
-    deleteFriend
-} = require('../../controllers/userController');
+  getUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+  addFriend,
+  removeFriend,
+} = require('../../controllers/userController.js');
 
-// /api/users GET all and POST 
-router.route('/').get(getUser).post(createUser);
+const router = Router();
 
-// /api/users/:userId GET one user, PUT and DELETE by user's ID
-router.route('/:userId')
-.get(getSingleUser)
-.put(updateUser)
-.delete(deleteUser);
+// /api/users
+router.route('/').get(getUsers).post(createUser);
 
-// /api/users/:userId/friends/:friendId POST and DELETE a friend by ID
-router.route('/:userId/friends/:friendId')
-.post(addFriend)
-.delete(deleteFriend);
+// /api/users/:userId
+router.route('/:userId').get(getUserById).put(updateUser).delete(deleteUser);
 
-module.exports = router;
+// /api/users/:userId/friends/:friendId
+router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend);
+
+// export default router;
+module.exports = router
