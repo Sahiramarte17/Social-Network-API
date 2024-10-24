@@ -1,15 +1,3 @@
-/*
-import { Router } from 'express';
-import {
-  getThoughts,
-  getThoughtById,
-  createThought,
-  updateThought,
-  deleteThought,
-  createReaction,
-  deleteReaction,
-} from '../../controllers/thoughtController.js';
-*/
 const { Router } = require('express');
 const {
   getThoughts,

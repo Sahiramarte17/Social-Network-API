@@ -1,15 +1,3 @@
-/*
-import { Router } from 'express';
-import {
-  getUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-  addFriend,
-  removeFriend,
-} from '../../controllers/userController.js';
- */
 const { Router } = require('express');
 const {
   getUsers,
